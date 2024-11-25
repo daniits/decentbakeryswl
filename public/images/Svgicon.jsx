@@ -7,7 +7,6 @@ const SvgIcon = ({ iconName, size, className, ...props }) => {
 
     useEffect(() => {
         // Dynamically import the SVG file based on iconName
-        // import(`assets/icons/${iconName}.svg`)
         import(`./icons/${iconName}.svg`)
             .then((svg) => {
                 setSvg(svg.default);
