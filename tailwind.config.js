@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'fade-slide-up': 'fadeSlideUp 0.5s ease-out forwards',
+      },
+    },
   },
   plugins: [],
 }

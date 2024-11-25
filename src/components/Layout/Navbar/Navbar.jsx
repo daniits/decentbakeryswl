@@ -31,16 +31,16 @@ const Navbar = () => {
                 </div>
                 <div className='' onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
                     {isHeartActive ? (
-                        <SvgIcon iconName="heart" className="w-5 h-auto" />
+                        <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
                     ) : (
-                        <SvgIcon iconName="heartTwo" className="w-5 h-auto" />
+                        <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
                     )}
                 </div>
                 <div className='' onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
                     {isBagActive ? (
-                        <SvgIcon iconName="bag" className="w-5 h-auto" />
+                        <SvgIcon iconName="bag" className="w-5 h-auto cursor-pointer" />
                     ) : (
-                        <SvgIcon iconName="bagTwo" className="w-5 h-auto" />
+                        <SvgIcon iconName="bagTwo" className="w-5 h-auto cursor-pointer" />
                     )}
                 </div>
             </div>
