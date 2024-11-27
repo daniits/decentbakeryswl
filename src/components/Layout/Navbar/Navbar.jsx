@@ -9,20 +9,20 @@ const Navbar = () => {
     const [isHeartActive, setHeartActive] = useState(true);
     const [isBagActive, setBagActive] = useState(true);
     return (
-        <nav className="flex items-center justify-between h-[12vh] px-52 py-4 relative text-black bg-white">
+        <nav className="flex items-center justify-between h-[9vh] px-52 py-4 relative text-black bg-white">
             {/* Left: Bakery */}
-            <div className="flex items-center justify-center bg-[#eee1ba] h-[120px] w-[110px] absolute rounded-br-[40px] left-40">
-                <div className='flex flex-col items-center'>
-                    <img src={Logo} alt="backeryLOGO" className=' mt-4 ' />
+            <div className="flex items-center justify-center z-50 bg-[#2b4174] top-0 h-[85px] w-[110px] absolute rounded-br-[40px] left-40">
+                <div className='flex flex-col items-center '>
+                    <img src={Logo} alt="backeryLOGO" className="" />
                     {/* <h1 className='text-white font-bold'>BACKERY</h1> */}
                 </div>
             </div>
 
             <div className="flex-grow flex justify-center items-center gap-5 font-semibold">
-                <Link to="/home" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[#f0d7a7]">HOME</Link>
-                <Link to="/about" className='hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[#f0d7a7]'>ABOUT</Link>
-                <Link to="/blog" className='hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[#f0d7a7]'>BLOG</Link>
-                <Link to="/contact" className='hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[#f0d7a7]'>CONTACT</Link>
+                <Link to="/home" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">HOME</Link>
+                <Link to="/about" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">ABOUT</Link>
+                <Link to="/blog" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">BLOG</Link>
+                <Link to="/contact" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">CONTACT</Link>
             </div>
             {/* ./icons/${iconName}.svg */}
             <div className="flex gap-5 items-center">

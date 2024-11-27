@@ -9,6 +9,9 @@ export default {
       animation: {
         'fade-slide-up': 'fadeSlideUp 0.5s ease-out forwards',
       },
+      fontFamily: {
+        playfair: ['Playfair Display', 'serif'], 
+      },
     },
   },
   plugins: [],
