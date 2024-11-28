@@ -59,10 +59,10 @@ const Products = () => {
                 {products.map((product, key) => (
                     <div
                         key={key}
-                        className="bg-white w-[100%] shadow-md rounded-lg p-4 flex flex-col hover:shadow-lg transition-shadow duration-300"
+                        className="bg-white w-[100%] shadow-sm rounded-3xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-300"
                     >
-                        <div className="bg-blue-500 h-[100%] w-full flex items-center justify-center mb-4">
-                            <img src={product.img} alt={product.name} className="h-full object-contain" />
+                        <div className=" w-[100%] h-auto flex items-center justify-center mb-0">
+                            <img src={product.img} alt={product.name} className="h-full " />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
                         <p className="text-sm text-gray-600 mb-4">{product.details}</p>
