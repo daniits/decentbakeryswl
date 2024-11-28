@@ -21,7 +21,7 @@ const Navbar = () => {
             <div className="flex-grow flex justify-center items-center gap-5 font-semibold">
                 <Link to="/home" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">HOME</Link>
                 <Link to="/about" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">ABOUT</Link>
-                <Link to="/blog" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">BLOG</Link>
+                <Link to="/shop" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">SHOP</Link>
                 <Link to="/contact" className="hover:text-white rounded-lg px-3 py-2 transition-all duration-300 ease-in-out hover:bg-[url('/images/icons/menu_shape.png')]">CONTACT</Link>
             </div>
             {/* ./icons/${iconName}.svg */}

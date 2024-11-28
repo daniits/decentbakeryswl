@@ -47,27 +47,48 @@ const category = [
   },
 ];
 
-const NextArrow = ({ onClick }) => {
-  return (
-    <div
-      className="absolute flex items-center top-[35%] right-[-57%] transform cursor-pointer text-gray-800 z-10"
-      onClick={onClick}
-    >
-      <SvgIcon iconName="right-arrow" className="w-[3%] h-auto "/>
-    </div>
-  );
-};
+// const NextArrow = ({ onClick }) => {
+//   return (
+//     <div
+//       className="cursor-pointer text-gray-800 z-10 absolute top-1/2 right-4 transform -translate-y-1/2 rounded-full bg-[#2b4174] hover:bg-[#fc7c7c] transition-colors duration-300 ease-in-out p-2"
+//       onClick={onClick}
+//     >
+//       <SvgIcon iconName="right-arrow" className="w-[20px] h-auto" />
+//     </div>
+//   );
+// };
 
-const PrevArrow = ({ onClick }) => {
+// const PrevArrow = ({ onClick }) => {
+//   return (
+//     <div
+//       className="cursor-pointer text-gray-800 z-10 absolute top-1/2 left-4 transform -translate-y-1/2"
+//       onClick={onClick}
+//     >
+//       <SvgIcon iconName="right-arrow" className="w-[30px] h-auto rotate-180" />
+//     </div>
+//   );
+// };
+function NextArrow(props) {
+  const { className, style, onClick } = props;
   return (
     <div
-      className="absolute top-1/2 left-2 transform -translate-y-1/2 cursor-pointer text-gray-800 z-10"
+      className={`${className}  mx-[-20px]`}
+      style={{ ...style, display: "block", background: "red", color: "green" }}
       onClick={onClick}
-    >
-      <SvgIcon iconName="right-arrow" className="w-[10%] h-auto rotate-180"/>
-    </div>
+    />
   );
-};
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className}  mx-[-20px]`}
+      style={{ ...style, display: "block", background: "green" }}
+      onClick={onClick}
+    />
+  );
+}
 
 const Category = () => {
   const settings = {
@@ -102,10 +123,11 @@ const Category = () => {
   };
 
   return (
-    <div className="mx-auto px-16 py-10">
+    <div className=" mx-20 px-0 py-10  relative ">
+      {/* Slider container with relative positioning */}
       <Slider {...settings}>
         {category.map((item, index) => (
-          <div key={index} className="p-2">
+          <div key={index} className="p-2  ">
             <div className="bg-white rounded-xl shadow-lg py-5 flex flex-col items-center gap-4">
               <img
                 src={item.img}

@@ -53,13 +53,13 @@ const Products = () => {
     ];
 
     return (
-        <div className="bg-gray-100 p-10">
+        <div className="bg-white p-10">
             <h2 className="text-center text-2xl font-bold text-gray-700 mb-8">Our Products</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-32">
                 {products.map((product, key) => (
                     <div
                         key={key}
-                        className="bg-white w-[100%] shadow-sm rounded-3xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white w-[100%] shadow-md hover:shadow-2xl rounded-3xl p-4 flex flex-col transition-shadow duration-300"
                     >
                         <div className=" w-[100%] h-auto flex items-center justify-center mb-0">
                             <img src={product.img} alt={product.name} className="h-full " />
