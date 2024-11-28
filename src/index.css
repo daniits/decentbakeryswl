@@ -3,100 +3,168 @@
 @tailwind utilities;
 
 .bounce {
-    animation: upAndDown 5s ease-in-out infinite;
+  animation: upAndDown 5s ease-in-out infinite;
+}
+
+@keyframes upAndDown {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  
-  @keyframes upAndDown {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-30px);
-    }
+  50% {
+    transform: translateY(-30px);
   }
+}
 
 /* Playfair Fonts */
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 400;
-  src: url('/path-to-fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  /* src: url('/path-to-fonts/PlayfairDisplay-Regular.ttf') format('truetype'); */
+  src: url("./assets/fonts/PlayfairDisplay-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 400;
-  src: url('/path-to-fonts/PlayfairDisplay-Italic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-Italic.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 500;
-  src: url('/path-to-fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 500;
-  src: url('/path-to-fonts/PlayfairDisplay-MediumItalic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-MediumItalic.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 600;
-  src: url('/path-to-fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 600;
-  src: url('/path-to-fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 700;
-  src: url('/path-to-fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 700;
-  src: url('/path-to-fonts/PlayfairDisplay-BoldItalic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-BoldItalic.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 800;
-  src: url('/path-to-fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-ExtraBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 800;
-  src: url('/path-to-fonts/PlayfairDisplay-ExtraBoldItalic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-ExtraBoldItalic.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: normal;
   font-weight: 900;
-  src: url('/path-to-fonts/PlayfairDisplay-Black.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-Black.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-weight: 900;
-  src: url('/path-to-fonts/PlayfairDisplay-BlackItalic.ttf') format('truetype');
+  src: url("./assets/fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
 }
 
+/* Base styles for the button */
+.animated-button {
+  position: relative;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white; /* Ensure the text is visible */
+  background-color: #fc7c7c; /* Initial button color */
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  overflow: hidden; /* Prevent overflow from animation */
+  z-index: 1; /* Ensure the text remains on top */
+}
+
+/* Pseudo-element for the hover animation */
+.animated-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start outside the left edge */
+  width: 100%;
+  height: 100%;
+  background-color: #2b4174; /* Hover color */
+  z-index: 0; /* Place behind the button text */
+  transition: left 0.5s ease-in-out; /* Smooth animation */
+}
+
+/* Ensure the button text stays on top */
+.animated-button span {
+  position: relative;
+  z-index: 2; /* Keeps the text above the pseudo-element */
+}
+
+/* On hover, slide in the background color */
+.animated-button:hover::before {
+  left: 0; /* Slide the hover color in from the left */
+}
+
+/* Animation class */
+.shadow-drop-center {
+  animation: shadow-drop-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes shadow-drop-center {
+  0% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  100% {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Base styles for the image */
+.img-hover {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover effect to make the image pop */
+.img-hover:hover {
+  transform: scale(1.1); /* Increase size to 110% */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35); /* Add shadow for a pop effect */
+}
+  
