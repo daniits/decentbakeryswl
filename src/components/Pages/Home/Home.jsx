@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../Layout/Layout'
 import Category from './Sections/Category/Category'
+import Products from './Sections/NewProducts/Products'
 
 const Home = () => {
     return (
@@ -25,6 +26,7 @@ const Home = () => {
             <img src="/images/icons/miniCake5.webp" alt="" className='absolute bottom-[20px] right-14'/>
             {/* <Category/> */}
             <Category/>
+            <Products/>
         </Layout>
     )
 }

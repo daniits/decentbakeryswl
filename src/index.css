@@ -158,12 +158,12 @@
 }
 
 /* Base styles for the image */
-.img-hover {
+.pop-up {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Hover effect to make the image pop */
-.img-hover:hover {
+.pop-up:hover {
   transform: scale(1.1); /* Increase size to 110% */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35); /* Add shadow for a pop effect */
 }

@@ -78,7 +78,7 @@ const Category = () => {
               <img
                 src={item.img}
                 alt={item.name}
-                className="w-[90%] h-auto object-cover rounded-xl img-hover"
+                className="w-[90%] h-auto object-cover rounded-xl pop-up"
               />
                 <h3 className="text-lg font-bold text-gray-800 font-playfair">{item.name}</h3>
               
