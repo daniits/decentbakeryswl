@@ -21,7 +21,7 @@ function NextArrow(props) {
             className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
         >
             {/* Add an SVG or text inside the button */}
-            <SvgIcon iconName="right-arrow"/>
+            <SvgIcon iconName="right-arrow" />
         </button>
     );
 }
@@ -34,8 +34,8 @@ function PrevArrow(props) {
         <button
             onClick={onClick}
             className={`${className}   text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
-            >
-            <SvgIcon iconName="right-arrow" className="rotate-180 bg-[#2b4174] hover:bg-[#fc7c7c] rounded-full  w-auto h-[20px]"/>
+        >
+            <SvgIcon iconName="right-arrow" className="rotate-180 bg-[#2b4174] hover:bg-[#fc7c7c] rounded-full  w-auto h-[20px]" />
         </button>
     );
 }
@@ -50,45 +50,45 @@ const products = [
     {
         img: "/images/image/product2.png",
         name: "Product 2",
-        details: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        details: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$15.99",
     },
     {
         img: "/images/image/product3.png",
         name: "Product 3",
-        details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        details: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$12.99",
     },
     {
         img: "/images/image/product4.png",
         name: "Product 4",
         details:
-            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$19.99",
     },
     {
         img: "/images/image/product5.png",
         name: "Product 5",
         details:
-            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$9.99",
     },
     {
         img: "/images/image/product1.png",
         name: "Product 6",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        details: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$17.99",
     },
     {
         img: "/images/image/product2.png",
         name: "Product 7",
-        details: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        details: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$14.99",
     },
     {
         img: "/images/image/product3.png",
         name: "Product 8",
-        details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        details: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
         price: "$16.99",
     },
 ];
@@ -129,28 +129,39 @@ function BestSeller() {
             </div>
             <Slider {...settings}>
                 {products.map((product, key) => (
-                    <div key={key} className="p-2 h-full">
-                        <div className="bg-white w-[100%] h-auto border-2 border-gray-100 shadow-md hover:shadow-2xl rounded-3xl p-4 flex flex-col transition-shadow duration-300">
-                            <div className="w-[100%] h-auto flex items-center justify-center mb-0">
-                                <img src={product.img} alt={product.name} className="h-full" />
-                            </div>
-                            <h3 className="text-lg font-semibold text-gray-800">
-                                {product.name}
-                            </h3>
-                            <p className="text-sm text-gray-600 mb-4">{product.details}</p>
-                            <div className="mt-auto flex items-center justify-between">
-                                <button className="bg-[#fc7c7c] text-sm font-semibold text-white px-5 py-1 rounded-full pop-up transition-colors duration-300">
-                                    Order Now
-                                </button>
-                                <h3 className="text-lg font-bold text-gray-800">
-                                    <span className="text-sm font-medium text-gray-500">
-                                        from
-                                    </span>{" "}
-                                    {product.price}
-                                </h3>
+                    <div key={key} className="p-4 h-full">
+                    <div className="relative bg-white border border-gray-200 w-[320px] mx-auto rounded-3xl group overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300">
+                        {/* Image Section */}
+                        <div className="flex items-center justify-center mx-auto w-full h-[240px]  overflow-hidden">
+                            <img
+                                src={product.img}
+                                alt={product.name}
+                                className="w-full h-full object-cover group-hover:pop-up3   "
+                            />
+                            {/* Tag */}
+                            <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                Best Seller
                             </div>
                         </div>
+                        {/* Content Section */}
+                        <div className="p-6">
+                            <h3 className="text-xl font-bold text-gray-800">{product.name}</h3>
+                            <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                                {product.details}
+                            </p>
+                        </div>
+                        {/* Price and Button Section */}
+                        <div className="p-4 bg-pink-200 bg-opacity-20 backdrop-blur-md border border-pink-200 flex items-center justify-between rounded-b-3xl shadow-lg">
+                            <h3 className="text-lg font-bold text-gray-800">
+                                <span className="text-sm font-medium text-gray-500">from</span> {product.price}
+                            </h3>
+                            <button className="bg-[#2b4174] text-sm font-semibold text-white px-5 py-1 rounded-full border-2 border-[#2b4174] hover:border-[#fc7c7c] hover:bg-transparent hover:text-[#2b4174] transition-colors duration-300">
+                                Order Now
+                            </button>
+                        </div>
                     </div>
+                </div>
+                
                 ))}
             </Slider>
         </div>
