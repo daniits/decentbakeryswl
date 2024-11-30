@@ -130,13 +130,13 @@ function BestSeller() {
             <Slider {...settings}>
                 {products.map((product, key) => (
                     <div key={key} className="p-4 h-full">
-                    <div className="relative bg-white border border-gray-200 w-[320px] mx-auto rounded-3xl group overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300">
+                    <div className="relative bg-white border border-gray-200 w-[360px] mx-auto rounded-3xl group overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300">
                         {/* Image Section */}
                         <div className="flex items-center justify-center mx-auto w-full h-[240px]  overflow-hidden">
                             <img
                                 src={product.img}
                                 alt={product.name}
-                                className="w-full h-full object-cover group-hover:pop-up3   "
+                                className="w-[90%] h-full object-cover group-hover:pop-up3   "
                             />
                             {/* Tag */}
                             <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">

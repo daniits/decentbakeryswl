@@ -107,16 +107,16 @@
 /* Base styles for the button */
 .animated-button {
   position: relative;
-  padding: 16px 32px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white; /* Ensure the text is visible */
-  background-color: #fc7c7c; /* Initial button color */
+  /* padding: 16px 32px; */
+  /* font-size: 16px; */
+  /* font-weight: bold; */
+  color: white; 
+  background-color: #fc7c7c; 
   border: none;
-  border-radius: 16px;
+  /* border-radius: 16px; */
   cursor: pointer;
-  overflow: hidden; /* Prevent overflow from animation */
-  z-index: 1; /* Ensure the text remains on top */
+  overflow: hidden;  
+  z-index: 1; 
 }
 
 /* Pseudo-element for the hover animation */
