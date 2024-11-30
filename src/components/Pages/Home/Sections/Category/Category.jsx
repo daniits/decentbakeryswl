@@ -69,25 +69,29 @@ const category = [
 //   );
 // };
 function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className}  mx-[-20px]`}
-      style={{ ...style, display: "block", background: "red", color: "green" }}
+  const { className, onClick } = props;
+    return (
+      <button
       onClick={onClick}
-    />
-  );
+      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+  >
+      {/* Add an SVG or text inside the button */}
+      <SvgIcon iconName="right-arrow" />
+  </button>
+    );
 }
 
 function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className}  mx-[-20px]`}
-      style={{ ...style, display: "block", background: "green" }}
+  const { className, onClick } = props;
+    return (
+      <button
       onClick={onClick}
-    />
-  );
+      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+  >
+      {/* Add an SVG or text inside the button */}
+      <SvgIcon iconName="right-arrow" className="rotate-180" />
+  </button>
+    );
 }
 
 const Category = () => {

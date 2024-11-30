@@ -33,9 +33,10 @@ function PrevArrow(props) {
     return (
         <button
             onClick={onClick}
-            className={`${className}   text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+            className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
         >
-            <SvgIcon iconName="right-arrow" className="rotate-180 bg-[#2b4174] hover:bg-[#fc7c7c] rounded-full  w-auto h-[20px]" />
+            {/* Add an SVG or text inside the button */}
+            <SvgIcon iconName="right-arrow" className="rotate-180" />
         </button>
     );
 }
