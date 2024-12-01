@@ -10,8 +10,8 @@ import TopSale from './Sections/TopSale/TopSale'
 const Home = () => {
     return (
         <Layout>
-            <div>
-                <div className='bg-[#fff3cd;] h-[85vh] flex sm:flex-col lg:flex-row sm:gap-5 lg:gap-0 sm:px-16 lg:px-40 py-[70px] justify-between relative'>
+            <div className="no-scrollbar">
+                <div className=' bg-[#fff3cd;] h-[85vh] flex sm:flex-col lg:flex-row sm:gap-5 lg:gap-0 sm:px-16 lg:px-40 py-[70px] justify-between relative'>
                     <div className='sm:w-[60vw] lg:w-[35vw] sm:text-center lg:text-start sm:justify-center mx-auto sm:mt-0 lg:mt-40'>
                         <div className=' flex flex-col  sm:gap-2 md:gap-5'>
                         <h1 className='sm:text-[30px] md:text-[30px] lg:text-[40px] font-semibold font-playfair'>Quality Products Bakery Items</h1>
