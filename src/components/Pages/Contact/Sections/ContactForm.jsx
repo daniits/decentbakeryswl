@@ -75,11 +75,11 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="flex sm:flex-col lg:flex-col justify-between px-32 py-20">
-            <div className="flex flex-col gap-4">
+        <div className="flex sm:flex-col lg:flex-row sm:items-center sm:gap-10 lg:gap-0 lg:items-start justify-between sm:px-1 lg:px-32 sm:py-5 md:py-10 lg:py-20">
+            <div className="flex flex-col gap-4 ">
                 <div>
-                    <h1 className="font-playfair sm:text-3xl lg:text-5xl font-[600]">We Are Here To Help You!</h1>
-                    <h1 className="font-playfair sm:text-3xl lg:text-5xl font-[600]">Please Contact Us.</h1>
+                    <h1 className="font-playfair sm:text-xl lg:text-5xl font-[600]">We Are Here To Help You!</h1>
+                    <h1 className="font-playfair sm:text-xl lg:text-5xl font-[600]">Please Contact Us.</h1>
                 </div>
                 <div>
                     <div className="flex py-2">
@@ -87,7 +87,7 @@ const ContactForm = () => {
                             type="text"
                             name="location"
                             placeholder="Enter your city"
-                            className="w-[60%] h-10 border-2 rounded-l-xl bg-gray-100 border-gray-300 text-gray-700 px-4 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400"
+                            className="sm:w-full md:w-[60%] h-10 border-2 rounded-l-xl bg-gray-100 border-gray-300 text-gray-700 px-4 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                         />
@@ -98,15 +98,15 @@ const ContactForm = () => {
                             <SvgIcon iconName="searchWhite" className="w-5 h-auto" />
                         </div>
                     </div>
-                    <div>
+                    <div >
                         {results.length > 0 ? (
                             results.map((store, index) => (
-                                <div key={index} className="mt-4">
-                                    <h1 className="font-bold text-xl">{store.name}</h1>
+                                <div key={index} className="mt-4 flex flex-col gap-2 font-playfair">
+                                    <h1 className="font-medium text-2xl">{store.name}</h1>
                                     <h3 className="text-gray-700">{store.address}</h3>
                                     <p className="text-gray-500">{store.email}</p>
-                                    <Link to={store.mapLink} target="_blank" className="text-blue-500 underline">
-                                        <span>View on Map</span>
+                                    <Link to={store.mapLink} target="_blank" className="text-pink underline">
+                                        <span className="font-bold font-roboto">VIEW ON THE MAP</span>
                                     </Link>
                                 </div>
                             ))
@@ -116,12 +116,12 @@ const ContactForm = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[url('/images/image/contactformBg.webp')] bg-cover bg-center p-12 w-[450px] flex flex-col gap-5">
-                <h3 className="text-4xl font-[500] font-playfair">Send A Quest</h3>
+            <div className=" bg-[url('/images/image/contactformBg.webp')] bg-cover bg-center sm:p-6 md:p-12 sm:w-[300px] md:w-[450px] flex flex-col gap-5">
+                <h3 className="sm:text-2xl md:text-4xl font-[500] font-playfair">Send A Quest</h3>
                 <div className="">
                     <form
                         onSubmit={handleSubmit}
-                        className="flex flex-col gap-10  mx-auto bg-gray-50 rounded-lg"
+                        className="flex flex-col sm:gap-5 md:gap-10 mx-auto bg-gray-50 rounded-lg"
                     >
                         {/* Name Field */}
                         <div> 
