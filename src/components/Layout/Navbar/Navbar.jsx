@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <nav className="flex items-center sm:justify-end lg:justify-between h-[9vh] px-10 lg:px-52 py-4 relative text-black bg-white">
             {/* Left: Bakery */}
-            <div className="flex items-center justify-center z-50 bg-[#2b4174] top-0 h-[100px] w-[110px] absolute rounded-br-[40px] left-10 lg:left-40">
+            <div className="flex items-center justify-center z-50 bg-blue top-0 h-[100px] w-[110px] absolute rounded-br-[40px] left-10 lg:left-40">
                 <div className="flex flex-col items-center">
                     <img src={Logo} alt="backeryLOGO" className="w-[60%] h-auto" />
                 </div>

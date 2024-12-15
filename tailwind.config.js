@@ -11,13 +11,13 @@ export default {
       },
       fontFamily: {
         playfair: ['Playfair Display', 'serif'], 
-        roboto: ['Roboto', 'sans-serif'], // Added another font option
+        roboto: ['Roboto', 'sans-serif'], 
       },
       colors: {
         primary: '#1E3A8A', 
         secondary: '#3B82F6', 
-        pink: '#fc7c7c', 
-        danger: '#EF4444', 
+        pink: '#fc7c7c', // pink
+        blue: '#2b4174', //darker blue 
         success: '#10B981', 
         warning: '#FBBF24', 
         neutral: '#9CA3AF',
