@@ -9,9 +9,9 @@ const Order = ({ product }) => {
     const increment = () => setCount(prevCount => prevCount + 1);
     const decrement = () => setCount(prevCount => Math.max(prevCount - 1, 0));
   return (
-    <div className="py-20">
-                <div className=" flex justify-center gap-5">
-                    <div className="flex bg-white gap-2 lg:w-[40%] lg:max-w-[400px] h-full">
+    <div className="py-20 sm:px-5 lg:px-0">
+                <div className=" flex sm:flex-col lg:flex-row justify-center gap-5">
+                    <div className="flex sm:flex-col lg:flex-row bg-white sm:self-center lg:self-start sm:gap-0 lg:gap-2 sm:w-[100%] lg:w-[40%] sm:w-max-[300px] lg:max-w-[400px] h-full">
                         {/* Main Image Section */}
                         <div className="flex items-center justify-center border-2 border-gray-300 w-full h-full">
                             <img
@@ -22,7 +22,7 @@ const Order = ({ product }) => {
                         </div>
 
                         {/* Thumbnails Section */}
-                        <div className="flex flex-col gap-2 mt-4 !h-[70%] max-h-[300px] self-center overflow-y-auto no-scrollbar">
+                        <div className="flex sm:flex-row lg:flex-col gap-2 mt-4 !h-[70%] max-h-[300px] self-center overflow-y-auto no-scrollbar">
                             {product.productImages.map((img, index) => (
                                 <img
                                     key={index}
@@ -38,9 +38,9 @@ const Order = ({ product }) => {
 
 
                     {/* Details Section */}
-                    <div className="flex flex-col gap-10 w-full h-full  lg:w-[40%] bg-white items-start">
+                    <div className="flex flex-col sm:gap-5 lg:gap-10 w-full h-full lg:w-[40%] bg-white items-start">
                         <div className="flex flex-col justify-center gap-3">
-                            <h1 className="sm:text-lg lg:text-3xl font-bold text-gray-700 text-center lg:text-left">
+                            <h1 className="sm:text-lg lg:text-3xl font-bold text-gray-700 lg:text-left">
                                 {product.name}
                             </h1>
                             <h3 className="sm:text-lg lg:text-2xl font-bold">
@@ -49,7 +49,7 @@ const Order = ({ product }) => {
                             <h6>****** (5 reviews)</h6>
                         </div>
                         <p>{product.details}</p>
-                        <div className="flex gap-4">
+                        <div className="flex sm:gap-1 lg:gap-4">
                             <div className="flex items-center gap-5 px-2 bg-blue text-white rounded">
                                 <button
                                     className="p-0 "
@@ -67,7 +67,7 @@ const Order = ({ product }) => {
                                     +
                                 </button>
                             </div>
-                            <button className="bg-blue hover:bg-pink text-white py-3 px-6 rounded-full font-semibold transition">ADD TO CART</button>
+                            <button className="bg-blue hover:bg-pink text-white  py-3 px-6 rounded-full font-semibold transition">ADD TO CART</button>
                             <button className="bg-blue hover:bg-pink p-4 rounded-full transition">
                                 <SvgIcon iconName="heartWhite" className="w-5 h-auto cursor-pointer" />
                             </button>

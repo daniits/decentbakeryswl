@@ -66,7 +66,7 @@ function BestSeller() {
     const { productId } = useParams();
 
     return (
-        <div className="mx-20 px-0 py-10 relative">
+        <div className="mx-12 lg:mx-20 px-0 py-10 relative">
             <div className="flex flex-col text-center gap-2 mb-4">
                 <h2 className="text-center text-4xl font-bold text-gray-700 font-playfair">
                     {productId ? "Related Products" : "Best Seller" }

@@ -17,7 +17,7 @@ const SingleProduct = () => {
     return (
         <div>
             <Header/>
-            <div className="px-32">
+            <div className="sm:px-10 lg:px-32">
             <Order product={product} />            
             <Information description={product.description}/>
             </div>

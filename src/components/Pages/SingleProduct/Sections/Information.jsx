@@ -24,10 +24,10 @@ const Information = ({ description }) => {
     return (
         <div className="py-20">
             <div className="flex flex-col items-center gap-10">
-                <div className="flex gap-4">
-                    <button className="bg-blue hover:bg-pink text-white py-3 px-6 rounded-full font-semibold transition" onClick={() => setView('description')}>DESCRIPTION</button>
-                    <button className="bg-blue hover:bg-pink text-white py-3 px-6 rounded-full font-semibold transition" onClick={() => setView('information')}>INFORMATION</button>
-                    <button className="bg-blue hover:bg-pink text-white py-3 px-6 rounded-full font-semibold transition" onClick={() => setView('reviews')}>REVIEWS</button>
+                <div className="flex sm:gap-2 lg:gap-4">
+                    <button className="bg-blue hover:bg-pink text-white sm:py-1 lg:py-3 sm:px-3 lg:px-6 rounded-full font-semibold transition" onClick={() => setView('description')}>DESCRIPTION</button>
+                    <button className="bg-blue hover:bg-pink text-white sm:py-1 lg:py-3 sm:px-3 lg:px-6 rounded-full font-semibold transition" onClick={() => setView('information')}>INFORMATION</button>
+                    <button className="bg-blue hover:bg-pink text-white sm:py-1 lg:py-3 sm:px-3 lg:px-6 rounded-full font-semibold transition" onClick={() => setView('reviews')}>REVIEWS</button>
                 </div>
                 <div>
                     {view === 'description' ? (

@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-<hr className='justify-self-center my-5 w-[70%]'/> 
+      <hr className='justify-self-center my-5 w-[70%]' />
       <div className="flex flex-col md:flex-row justify-center items-center mt-6">
         <p className="text-white">&copy; {new Date().getFullYear()} Decent Bakery. All Rights Reserved.</p>
       </div>
