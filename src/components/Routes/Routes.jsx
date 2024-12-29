@@ -4,37 +4,45 @@ import Shop from "../Pages/Shop/Shop";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Contact from "../Pages/Contact/Contact";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
-import Layout from "../Layout/Layout";
-
+import Cart from "../Pages/Cart/Cart";
+import App from "../../App"; 
+import Checkout from "../Pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App>
+      <Home />
+      </App>,
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <App><Home /></App>,
   },
   {
     path: "/shop",
-    element: <Shop />,
+    element: <App><Shop /></App>,
   },
   {
     path: "/about",
-    element: <AboutUs />,
+    element: <App><AboutUs /></App>,
   },
   {
     path: "/contact",
-    element: <Contact />,
+    element: <App><Contact /></App>,
   },
   {
     path: "/product/:productId",
-    element:
-      <Layout>
-        <SingleProduct />
-      </Layout>
-  }
+    element: <App><SingleProduct /></App>,
+  },
+  {
+    path: "/cart/:productId",
+    element: <App><Cart /></App>,
+  },
+  {
+    path: "/checkout",
+    element: <App><Checkout /></App>,
+  },
 ]);
 
 export default router;

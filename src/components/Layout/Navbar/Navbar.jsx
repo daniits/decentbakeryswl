@@ -63,22 +63,24 @@ const Navbar = () => {
             <div className="flex gap-10 items-center lg:right-[10px]">
                 {/* Icons */}
                 <div className='flex gap-2'>
-                <SvgIcon iconName="search" className="w-5 h-auto cursor-pointer" />
-                <div onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
-                    {isHeartActive ? (
-                        <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
-                    ) : (
-                        <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
-                    )}
-                </div>
-                <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
-                    {isBagActive ? (
-                        <SvgIcon iconName="bag" className="w-5 h-auto cursor-pointer" />
-                    ) : (
-                        <SvgIcon iconName="bagTwo" className="w-5 h-auto cursor-pointer" />
-                    )}
-                    {/* Drawer Trigger */}
-                </div>
+                    <SvgIcon iconName="search" className="w-5 h-auto cursor-pointer" />
+                    <div onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
+                        {isHeartActive ? (
+                            <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
+                        ) : (
+                            <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
+                        )}
+                    </div>
+                    <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
+                        <Link to="/cart/:productId">
+                            {isBagActive ? (
+                                <SvgIcon iconName="bag" className="w-5 h-auto cursor-pointer" />
+                            ) : (
+                                <SvgIcon iconName="bagTwo" className="w-5 h-auto cursor-pointer" />
+                            )}
+                        </Link>
+                        {/* Drawer Trigger */}
+                    </div>
                 </div>
                 <div className="lg:hidden ">
                     <Drawer showDrawer={showDrawer} handleClose={handleCloseDrawer} />

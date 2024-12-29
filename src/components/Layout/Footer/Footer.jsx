@@ -28,7 +28,7 @@ const Footer = () => {
         {/* Information Section */}
         <div className="flex gap-10">
           <div className="flex flex-col w-full">
-            <h3 className="text-2xl font-playfair font-semibold mb-4">INFORMATION</h3>
+            <h3 className="sm:text-xl lg:text-2xl font-playfair font-semibold mb-4">INFORMATION</h3>
             <ul className="space-y-5">
               <li><a href="#" className="hover:text-pink transition">About Us</a></li>
               <li><a href="#" className="hover:text-pink transition">Delivery Information</a></li>
@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Account Section */}
           <div className="flex flex-col w-full">
-            <h3 className="text-2xl font-playfair font-semibold mb-4">ACCOUNT</h3>
+            <h3 className="sm:text-xl lg:text-2xl font-playfair font-semibold mb-4">ACCOUNT</h3>
             <ul className="space-y-5">
               <li><a href="#" className="hover:text-pink transition">My Account</a></li>
               <li><a href="#" className="hover:text-pink transition">Order History</a></li>
