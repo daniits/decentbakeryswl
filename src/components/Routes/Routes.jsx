@@ -7,6 +7,7 @@ import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 import Cart from "../Pages/Cart/Cart";
 import App from "../../App"; 
 import Checkout from "../Pages/Checkout/Checkout";
+import AdminPanel from "../Auth/Admin/AdminPanel";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     element: <App>
       <Home />
       </App>,
+  },
+  {
+    path: "/admin",
+    element: <AdminPanel />,
   },
   {
     path: "/home",
