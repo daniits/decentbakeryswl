@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SvgIcon from '../../../../../public/images/Svgicon';
 import { useCart } from '../../../Services/Context/CartContext'; 
 
@@ -25,6 +25,29 @@ const Order = ({ product }) => {
     dispatch({ type: 'ADD_TO_CART', payload: cartItem });
     alert(`${product.name} added to cart!`);
   };
+
+  const [favourites, setFavourites] = useState([]);
+
+  // Load favourites from localStorage when the component mounts
+  useEffect(() => {
+    const storedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    setFavourites(storedFavourites);
+  }, []);
+
+  // Save favourites to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+  }, [favourites]);
+  
+
+  const toggleFavourite = (productId) => {
+    setFavourites((prevFavourites) =>
+      prevFavourites.includes(productId)
+        ? prevFavourites.filter((id) => id !== productId) // Remove from favourites
+        : [...prevFavourites, productId] // Add to favourites
+    );
+  };
+
 
   return (
     <div className="py-20 sm:px-5 lg:px-0">
@@ -87,6 +110,13 @@ const Order = ({ product }) => {
             <button className="bg-blue hover:bg-pink p-4 rounded-full transition">
               <SvgIcon iconName="heartWhite" className="w-5 h-auto cursor-pointer" />
             </button>
+            <button
+            onClick={() => toggleFavourite(product.id)}
+            className={favourites.includes(product.id) ? 'favourite' : ''}
+          >
+            {favourites.includes(product.id) ? 'Unfavourite' : 'Favourite'}
+          </button>
+          <h1>{product.id}</h1>
             <button className="bg-blue hover:bg-pink p-4 rounded-full transition">
               <SvgIcon iconName="searchWhite" className="w-5 h-auto cursor-pointer" />
             </button>

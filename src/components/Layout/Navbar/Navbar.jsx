@@ -65,11 +65,13 @@ const Navbar = () => {
                 <div className='flex gap-2'>
                     <SvgIcon iconName="search" className="w-5 h-auto cursor-pointer" />
                     <div onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
+                        <Link to="/favourite">
                         {isHeartActive ? (
                             <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
                         ) : (
                             <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
                         )}
+                        </Link>
                     </div>
                     <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
                         <Link to="/cart/:productId">

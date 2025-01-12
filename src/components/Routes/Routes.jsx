@@ -8,6 +8,7 @@ import Cart from "../Pages/Cart/Cart";
 import App from "../../App"; 
 import Checkout from "../Pages/Checkout/Checkout";
 import AdminPanel from "../Auth/Admin/AdminPanel";
+import Favourite from "../Pages/Favourite/Favourite";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/cart/:productId",
     element: <App><Cart /></App>,
+  },
+  {
+    path: "/favourite",
+    element: <App><Favourite /></App>,
   },
   {
     path: "/checkout",

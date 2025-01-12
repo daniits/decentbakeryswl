@@ -4,7 +4,7 @@ import VideoSection from './Sections/VideoSection'
 import Partners from '../Home/Sections/Partners/Partners'
 import Team from './Sections/Team'
 import Testimonial from './Sections/Testimonial'
-import Category2 from './Sections/category2'
+import Category2 from './Sections/Category2'
 import Header from '../../Shared/Header/Header'
 
 const AboutUs = () => {
