@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sale = () => {
     return (
@@ -12,9 +13,11 @@ const Sale = () => {
                     <h3 className="text-xl md:text-4xl font-playfair font-semibold">
                         Best Quality Products
                     </h3>
+                    {/* <Link to={`/product/${product.id}`}> */}
                     <button className="bg-[#fc7c7c] animated-button text-xs md:text-sm hover:animate-fade-slide-up transition-colors duration-300 px-4 md:px-5 py-2 w-[60%] md:w-[50%] rounded-xl font-medium">
                         <span>SHOP NOW</span>
                     </button>
+                    {/* </Link> */}
                 </div>
             </div>
 

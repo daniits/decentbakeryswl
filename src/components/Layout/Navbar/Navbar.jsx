@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <nav className="flex items-center sm:justify-end lg:justify-between h-[9vh] px-10 lg:px-52 py-4 relative text-black bg-white">
             {/* Left: Bakery */}
-            <div className="flex items-center justify-center z-50 bg-[#2b4174] top-0 h-[100px] w-[110px] absolute rounded-br-[40px] left-10 lg:left-40">
+            <div className="flex items-center justify-center z-50 bg-blue top-0 h-[100px] w-[110px] absolute rounded-br-[40px] left-10 lg:left-40">
                 <div className="flex flex-col items-center">
                     <img src={Logo} alt="backeryLOGO" className="w-[60%] h-auto" />
                 </div>
@@ -63,22 +63,26 @@ const Navbar = () => {
             <div className="flex gap-10 items-center lg:right-[10px]">
                 {/* Icons */}
                 <div className='flex gap-2'>
-                <SvgIcon iconName="search" className="w-5 h-auto cursor-pointer" />
-                <div onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
-                    {isHeartActive ? (
-                        <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
-                    ) : (
-                        <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
-                    )}
-                </div>
-                <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
-                    {isBagActive ? (
-                        <SvgIcon iconName="bag" className="w-5 h-auto cursor-pointer" />
-                    ) : (
-                        <SvgIcon iconName="bagTwo" className="w-5 h-auto cursor-pointer" />
-                    )}
-                    {/* Drawer Trigger */}
-                </div>
+                    <SvgIcon iconName="search" className="w-5 h-auto cursor-pointer" />
+                    <div onMouseEnter={() => setHeartActive(false)} onMouseLeave={() => setHeartActive(true)}>
+                        <Link to="/favourite">
+                        {isHeartActive ? (
+                            <SvgIcon iconName="heart" className="w-5 h-auto cursor-pointer" />
+                        ) : (
+                            <SvgIcon iconName="heartTwo" className="w-5 h-auto cursor-pointer" />
+                        )}
+                        </Link>
+                    </div>
+                    <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
+                        <Link to="/cart/:productId">
+                            {isBagActive ? (
+                                <SvgIcon iconName="bag" className="w-5 h-auto cursor-pointer" />
+                            ) : (
+                                <SvgIcon iconName="bagTwo" className="w-5 h-auto cursor-pointer" />
+                            )}
+                        </Link>
+                        {/* Drawer Trigger */}
+                    </div>
                 </div>
                 <div className="lg:hidden ">
                     <Drawer showDrawer={showDrawer} handleClose={handleCloseDrawer} />

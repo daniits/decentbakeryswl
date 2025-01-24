@@ -3,28 +3,55 @@ import Home from "../Pages/Home/Home";
 import Shop from "../Pages/Shop/Shop";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Contact from "../Pages/Contact/Contact";
-
+import SingleProduct from "../Pages/SingleProduct/SingleProduct";
+import Cart from "../Pages/Cart/Cart";
+import App from "../../App"; 
+import Checkout from "../Pages/Checkout/Checkout";
+import AdminPanel from "../Auth/Admin/AdminPanel";
+import Favourite from "../Pages/Favourite/Favourite";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App>
+      <Home />
+      </App>,
+  },
+  {
+    path: "/admin",
+    element: <AdminPanel />,
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <App><Home /></App>,
   },
   {
     path: "/shop",
-    element: <Shop />,
+    element: <App><Shop /></App>,
   },
   {
     path: "/about",
-    element: <AboutUs />,
+    element: <App><AboutUs /></App>,
   },
   {
     path: "/contact",
-    element: <Contact />,
+    element: <App><Contact /></App>,
+  },
+  {
+    path: "/product/:productId",
+    element: <App><SingleProduct /></App>,
+  },
+  {
+    path: "/cart/:productId",
+    element: <App><Cart /></App>,
+  },
+  {
+    path: "/favourite",
+    element: <App><Favourite /></App>,
+  },
+  {
+    path: "/checkout",
+    element: <App><Checkout /></App>,
   },
 ]);
 
