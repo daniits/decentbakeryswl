@@ -49,18 +49,23 @@ function BestSeller() {
         prevArrow: <PrevArrow />,
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1400, // Below 1400px
+                settings: { slidesToShow: 3, slidesToScroll: 1 },
+            },
+            {
+                breakpoint: 1900, // Between 1400px and 1900px
                 settings: { slidesToShow: 4, slidesToScroll: 1 },
             },
             {
-                breakpoint: 1050,
+                breakpoint: 1050, // Below 1050px
                 settings: { slidesToShow: 2, slidesToScroll: 1 },
             },
             {
-                breakpoint: 768,
+                breakpoint: 768, // Below 768px
                 settings: { slidesToShow: 1, slidesToScroll: 1 },
             },
         ],
+        
     };
 
     const { productId } = useParams();
