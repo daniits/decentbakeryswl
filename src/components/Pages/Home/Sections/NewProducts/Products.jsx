@@ -6,7 +6,7 @@ const Products = () => {
 
 
   return (
-    <div className=" p-0">
+    <div className="p-0 flex flex-col items-center gap-10">
       <h2 className="text-center text-2xl font-bold text-gray-700 mb-8">Our Products</h2>
       <div
         className={` grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:px-10 lg:px-32 transition-all duration-1000 `}
@@ -36,6 +36,9 @@ const Products = () => {
           </div>
         ))}
       </div>
+      <Link to="/shop">
+        <button className="bg-blue text-white hover:text-pink hover:bg-transparent border-2 border-blue hover:border-pink w-fit px-3 py-1 rounded-lg font-semibold">Show More</button>
+      </Link>
     </div>
   );
 };

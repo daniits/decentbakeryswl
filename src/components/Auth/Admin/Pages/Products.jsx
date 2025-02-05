@@ -7,6 +7,7 @@ const Products = () => {
     const BackendURL = import.meta.env.VITE_BACKEND_URL
     const [loading, setLoading] = useState(false)
     const [products, setProducts] = useState([]);
+    console.log(products, "dfads")
     const [showAddProductForm, setShowAddProductForm] = useState(false);
     const [newProduct, setNewProduct] = useState({
         name: "",
@@ -18,6 +19,7 @@ const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false)
+    const [refresh, setRefresh] = useState(false);
 
     const handleEditClick = (product) => {
         setSelectedProduct(product);
@@ -35,18 +37,22 @@ const Products = () => {
     };
     const handleAddProduct = async () => {
         if (!newProduct) {
-            console.log("Add Product Please")
+            console.log("Add Product Please");
             return;
         }
-        setLoading(true)
+        setLoading(true);
         try {
-            const response = await axios.post(`${BackendURL}/addProducts`, newProduct)
+            const response = await axios.post(`${BackendURL}/addProducts`, newProduct);
             console.log("Product added successfully:", response.data);
-            setLoading(false)
+            setRefresh((prev) => !prev); // Toggle refresh state to trigger useEffect
+            setShowAddProductForm(!showAddProductForm)
         } catch (error) {
             console.error("Error adding product:", error.response?.data || error.message);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
+    
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true)
@@ -62,41 +68,57 @@ const Products = () => {
         }
 
         getProducts()
-    }, [])
+    }, [refresh])
 
     const handleDelete = async (id) => {
-        setLoading(true); // Start loading
+        setLoading(true);
         try {
             const response = await axios.delete(`${BackendURL}/deleteProduct/${id}`);
             console.log("Product deleted successfully:", response.data);
-
-            // Close modal after successful deletion
-            setDeleteModal(false);
-
-            // Optionally, refresh the product list or state here
+    
+            setDeleteModal(false); // Close modal after successful deletion
+            setRefresh((prev) => !prev); // Toggle refresh state to trigger useEffect
+            setDeleteModal(false)
         } catch (error) {
             console.error("Unable to delete the product:", error);
         } finally {
-            setLoading(false); // Stop loading
+            setLoading(false);
         }
     };
+    
 
     const handleSave = async (updatedProduct) => {
         try {
-            const response = await axios.put(`${BackendURL}/editProduct/${selectedProduct._id}`, updatedProduct)
-            handleCloseModal();
-
-            if (!response.ok) {
-                throw new Error("Failed to update product");
-            }
-            const data = await response.json();
-            console.log("Product updated:", data);
-
-            // Optionally refresh the product list
+            const response = await axios.put(`${BackendURL}/editProduct/${selectedProduct._id}`, updatedProduct);
+            
+            console.log("Product updated:", response.data);
+            
+            handleCloseModal(); // Close the modal after successful update
+            setRefresh((prev) => !prev); // Trigger refresh to update product list
         } catch (error) {
-            console.error("Error updating product:", error);
+            console.error("Error updating product:", error.response?.data || error.message);
         }
     };
+    
+
+    const toggleBestSeller = async (id) => {
+        setLoading(true);
+        try {
+            const response = await axios.put(`${BackendURL}/bestSeller/${id}`);
+            const updatedProduct = response.data.product;
+
+            setProducts((prevProducts) =>
+                prevProducts.map((product) =>
+                    product._id === id ? updatedProduct : product
+                )
+            );
+        } catch (error) {
+            console.error("Error updating best seller status:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     return (
 
@@ -193,6 +215,7 @@ const Products = () => {
                                         <th className="p-3 border border-gray-300 text-left">Price</th>
                                         <th className="p-3 border border-gray-300 text-left">Stock</th>
                                         <th className="p-3 border border-gray-300 text-left">Description</th>
+                                        <th className="p-3 border border-gray-300 text-left">Best Seller</th>
                                         <th className="p-3 border border-gray-300 text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -205,6 +228,14 @@ const Products = () => {
                                                 <td className="p-3 border border-gray-300">{product.price}</td>
                                                 <td className="p-3 border border-gray-300">{product.stock}</td>
                                                 <td className="p-3 border border-gray-300">{product.description}</td>
+                                                <td className="p-3 border border-gray-300 text-center">
+                                                    <button
+                                                        className={`px-3 py-1 rounded ${product.bestSeller ? " font-bold " : "bg-gray-300"}`}
+                                                        onClick={() => toggleBestSeller(product._id)}
+                                                    >
+                                                        {product.bestSeller ? "Best Seller ✅" : "Mark as Best Seller"}
+                                                    </button>
+                                                </td>
                                                 <td className="p-3 border border-gray-300 text-center">
                                                     <button className="text-blue-500 hover:underline mr-3"
                                                         onClick={() => handleEditClick(product)}
@@ -237,12 +268,12 @@ const Products = () => {
                                                                 <button
                                                                     onClick={() => handleDelete(product._id)}
                                                                     className={`px-4 py-2 rounded-lg text-white ${loading
-                                                                            ? "bg-red-400 cursor-not-allowed"
-                                                                            : "bg-red-500 hover:bg-red-600"
+                                                                        ? "bg-red-400 cursor-not-allowed"
+                                                                        : "bg-red-500 hover:bg-red-600"
                                                                         }`}
                                                                     disabled={loading}
                                                                 >
-                                                                    {loading ? (<Loader/>) : "Delete"}
+                                                                    {loading ? (<Loader />) : "Delete"}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -265,15 +296,25 @@ const Products = () => {
                                         <p className="text-sm text-gray-600">Category: {product.category}</p>
                                         <p className="text-sm text-gray-600">Price: {product.price}</p>
                                         <p className="text-sm text-gray-600">Stock: {product.stock}</p>
-                                        <div className="mt-4 flex justify-end space-x-3">
-                                            <button className="text-blue-500 hover:underline" onClick={() => handleEditClick(product)}>Edit</button>
-                                            <button
-                                                className="text-red-500 hover:underline"
-                                            // onClick={() => handleDelete(product._id)}
-                                            // onClick={}
-                                            >
-                                                Delete
-                                            </button>
+                                        <div className="mt-4 flex justify-between space-x-3">
+                                            <div>
+                                                <button
+                                                    className={`px-3 py-1 rounded ${product.bestSeller ? "bg-green-500 font-bold text-white" : "bg-gray-300"}`}
+                                                    onClick={() => toggleBestSeller(product._id)}
+                                                >
+                                                    {product.bestSeller ? "Best Seller ✅" : "Mark as Best Seller"}
+                                                </button>
+                                            </div>
+                                            <div className="flex gap-3">
+                                                <button className="text-blue-500 hover:underline" onClick={() => handleEditClick(product)}>Edit</button>
+                                                <button
+                                                    className="text-red-500 hover:underline"
+                                                // onClick={() => handleDelete(product._id)}
+                                                // onClick={}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TopSale = () => {
     return (
@@ -14,9 +15,11 @@ const TopSale = () => {
                     <p className="text-sm md:text-base lg:text-lg">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, sunt. Voluptatum in repellendus tempora illum sit neque natus quibusdam eveniet.
                     </p>
+                    <Link to="/shop">
                     <button className="bg-[#fc7c7c] animated-button text-sm hover:animate-fade-slide-up transition-colors duration-300 px-8 py-4 rounded-xl font-medium">
                         <span>SHOP NOW</span>
                     </button>
+                    </Link>
                 </div>
             </div>
         </div>
