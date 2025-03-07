@@ -1,22 +1,22 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useReducer, useContext, useEffect } from "react";
 
-// Initial state
+// Initial state (try to load from localStorage first)
 const initialState = {
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  totalPrice: JSON.parse(localStorage.getItem("totalPrice")) || 0,
 };
 
 // Reducer function to handle cart actions
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      console.log("Payload received:", action.payload);
-
       const existingProductIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id
       );
 
+      let updatedCart;
       if (existingProductIndex !== -1) {
-        const updatedCart = state.cart.map((item, index) =>
+        updatedCart = state.cart.map((item, index) =>
           index === existingProductIndex
             ? {
                 ...item,
@@ -24,26 +24,19 @@ const cartReducer = (state, action) => {
               }
             : item
         );
-        // console.log("Updated Cart:", updatedCart);
-        return {
-          ...state,
-          cart: updatedCart,
-          totalPrice: calculateTotalPrice(updatedCart), // Update total price
-        }
-      };
-      
-      const newItem = {
-        ...action.payload,
-        price: (action.payload.price) , // Ensure price is a number
-        quantity: (action.payload.quantity), // Ensure quantity is a number
-      };
+      } else {
+        const newItem = {
+          ...action.payload,
+          price: action.payload.price, // Ensure price is a number
+          quantity: action.payload.quantity, // Ensure quantity is a number
+        };
+        updatedCart = [...state.cart, newItem];
+      }
 
-      const updatedCart = [...state.cart, newItem];
-      console.log("Updated Cart:", updatedCart)
       return {
         ...state,
         cart: updatedCart,
-        totalPrice: calculateTotalPrice(updatedCart), // Update total price
+        totalPrice: calculateTotalPrice(updatedCart),
       };
     }
 
@@ -54,7 +47,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         cart: updatedCart,
-        totalPrice: calculateTotalPrice(updatedCart), // Update total price
+        totalPrice: calculateTotalPrice(updatedCart),
       };
     }
 
@@ -67,7 +60,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         cart: updatedCart,
-        totalPrice: calculateTotalPrice(updatedCart), // Update total price
+        totalPrice: calculateTotalPrice(updatedCart),
       };
     }
 
@@ -75,7 +68,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         cart: [],
-        totalPrice: 0, // Reset total price
+        totalPrice: 0,
       };
 
     default:
@@ -83,18 +76,14 @@ const cartReducer = (state, action) => {
   }
 };
 
-
-// Ensure proper calculation of total price
+// Function to calculate total price
 const calculateTotalPrice = (cart) => {
   return cart.reduce((total, item) => {
-    const price = parseFloat(item.price) || 0; // Ensure price is a valid number
-    const quantity = parseInt(item.quantity, 10) || 0; // Ensure quantity is a valid number
+    const price = parseFloat(item.price) || 0;
+    const quantity = parseInt(item.quantity, 10) || 0;
     return total + price * quantity;
   }, 0);
 };
-
-
-
 
 // Create the context
 const CartContext = createContext();
@@ -103,8 +92,14 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  // Store cart and totalPrice in localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+    localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
+  }, [state.cart, state.totalPrice]);
+
   return (
-    <CartContext.Provider value={{ cart: state.cart, dispatch }}>
+    <CartContext.Provider value={{ cart: state.cart, totalPrice: state.totalPrice, dispatch }}>
       {children}
     </CartContext.Provider>
   );

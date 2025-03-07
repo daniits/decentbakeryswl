@@ -2,14 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import EditProductModal from "../../../Shared/ProductModal/EditProductModal";
 import Loader from "../../../Shared/Loader/Loader";
+import ShopContext from "../../../Services/Context/Shop/ShopContext";
 
-const Products = () => {
+const Products = () => {  
     const BackendURL = import.meta.env.VITE_BACKEND_URL
     const [loading, setLoading] = useState(false)
     const [products, setProducts] = useState([]);
     console.log(products, "dfads")
     const [showAddProductForm, setShowAddProductForm] = useState(false);
-    const [newProduct, setNewProduct] = useState({
+    const [newProduct, setNewProduct] = useState({  
         name: "",
         category: "",
         price: "",

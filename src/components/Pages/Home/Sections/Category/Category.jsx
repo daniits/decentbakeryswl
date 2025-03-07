@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SvgIcon from "../../../../../../public/images/Svgicon";
+import SvgIcon from "../../../../../../public/images/Svgicon"; 
+import ShopContext from "../../../../Services/Context/Shop/ShopContext";
 
 const category = [
   {
@@ -70,31 +71,37 @@ const category = [
 // };
 function NextArrow(props) {
   const { className, onClick } = props;
-    return (
-      <button
+  return (
+    <button
       onClick={onClick}
       className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
-  >
+    >
       {/* Add an SVG or text inside the button */}
       <SvgIcon iconName="right-arrow" />
-  </button>
-    );
+    </button>
+  );
 }
 
 function PrevArrow(props) {
   const { className, onClick } = props;
-    return (
-      <button
+  return (
+    <button
       onClick={onClick}
       className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
-  >
+    >
       {/* Add an SVG or text inside the button */}
       <SvgIcon iconName="right-arrow" className="rotate-180" />
-  </button>
-    );
+    </button>
+  );
 }
 
-const Category = () => {
+const Category = ({ category, handleCategoryClick }) => {
+
+  // console.log(category)
+
+  // const { setSelectedCategory, selectedCategory } = useContext(ShopContext);
+  // const { setSelectedCategory: contextSelectedCategory, selectedCategory: contextCategory } = useContext(ShopContext);
+  // console.log(selectedCategory);
   const settings = {
     dots: false,
     infinite: true,
@@ -127,23 +134,31 @@ const Category = () => {
   };
 
   return (
-    <div className=" mx-20 px-0 py-10  relative ">
+    <div className=" mx-20 px-0 py-0  relative ">
       {/* Slider container with relative positioning */}
       <Slider {...settings}>
-        {category.map((item, index) => (
-          <div key={index} className="p-2  ">
+        {category?.map((item, index) => (
+          <div key={index} className="p-2">
             <div className="bg-white rounded-xl shadow-lg py-5 flex flex-col items-center gap-4">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="w-[90%] h-auto object-cover rounded-xl pop-up"
-              />
-              <h3 className="text-lg font-bold text-gray-800 font-playfair">
-                {item.name}
+              {/* Ensure item has an image property before using it */}
+              {item.img && (
+                <img
+                  src={item.img}
+                  alt={item.name || 'Category Image'}
+                  className="w-[90%] h-auto object-cover rounded-xl pop-up"
+                />
+              )}
+              <h3
+                className="text-lg font-bold text-gray-800 font-playfair cursor-pointer"
+                // onClick={() => setSelectedCategory(item)}
+              >
+                {item.name || item}
               </h3>
+
             </div>
           </div>
         ))}
+
       </Slider>
     </div>
   );

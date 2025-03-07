@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import SvgIcon from '../../../../public/images/Svgicon';
 import Logo from "/images/icons/logo.png";
 import Drawer from '../../UI/Drawer';
+import { useCart } from '../../Services/Context/CartContext';
 
 const Navbar = () => {
+    const {cart} = useCart()
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+    console.log(totalItems)
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [isBagActive, setBagActive] = useState(true);
     const [showDrawer, setShowDrawer] = useState(false);
@@ -29,7 +34,7 @@ const Navbar = () => {
 
             {/* Center Links (Hidden on small screens, shown on large screens) */}
             <div className="hidden lg:flex flex-grow justify-center items-center gap-10 font-semibold">
-                {["home", "about", "shop", "contact"].map((item) => (
+                {["home", "shop", "contact"].map((item) => (
                     <Link 
                         key={item} 
                         to={`/${item}`} 
@@ -42,11 +47,20 @@ const Navbar = () => {
             {/* Right Section (Icons & Drawer) */}
             <div className="flex gap-6 lg:gap-10 items-center ml-auto">
                 {/* Search & Bag Icons */}
-                <div className="flex gap-4">
-                    <SvgIcon iconName="search" className="w-7 h-auto cursor-pointer" />
-                    <div onMouseEnter={() => setBagActive(false)} onMouseLeave={() => setBagActive(true)}>
+                <div className="flex gap-4"> 
+                    <div className="hover:bg-pink/50 p-2 rounded-full">
                         <Link to="/cart/:productId">
-                            <SvgIcon iconName={isBagActive ? "bag" : "bagTwo"} className="w-7 h-auto cursor-pointer" />
+                            <div className="relative">
+                        {/* Cart Icon */}
+                        <SvgIcon iconName="bag" className="w-7 h-auto cursor-pointer" />
+
+                        {/* Cart Badge */}
+                        {totalItems > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                                {totalItems}
+                            </span>
+                        )}
+                    </div>
                         </Link>
                     </div>
                 </div>

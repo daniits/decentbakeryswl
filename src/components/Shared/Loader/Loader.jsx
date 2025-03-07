@@ -9,8 +9,8 @@ const Loader = () => {
     //     <div className="w-5 h-5 bg-[#fc7c7c] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
     //   </div>
     // </div>
-    <div className="flex justify-center items-center h-full bg-gray-100">
-    <div className="relative w-6 h-6 border-4 border-[#fc7c7c] border-t-[#2b4174] rounded-full animate-spin"></div>
+    <div className="flex justify-center items-center h-full ">
+    <div className="relative w-20 h-20 border-8 border-[#fc7c7c] border-t-[#2b4174] rounded-full animate-spin"></div>
   </div>
   )
 }

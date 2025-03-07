@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Header from "../../Shared/Header/Header";
 import { Link } from "react-router-dom";
 import { useCart } from "../../Services/Context/CartContext";
+import CheckoutModal from "../../Shared/CheckoutModal/CheckoutModal";
 
 const Cart = () => {
     const { cart, dispatch } = useCart();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     // State for item quantities
     const [quantities, setQuantities] = useState(
@@ -40,12 +42,12 @@ const Cart = () => {
                 <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
                 <div className="cart-table w-full border-collapse border border-gray-300">
                     <div className="cart-header grid grid-cols-6 bg-blue/90 text-white font-medium text-left p-4">
-                        <div className="col-span-1">Actions</div>
-                        <div className="col-span-1">Image</div>
                         <div className="col-span-1">Product Name</div>
+                        <div className="col-span-1">Image</div>
                         <div className="col-span-1">Price</div>
                         <div className="col-span-1">Quantity</div>
                         <div className="col-span-1">Total</div>
+                        <div className="col-span-1">Actions</div>
                     </div>
 
                     {cart.length > 0 ? (
@@ -54,15 +56,8 @@ const Cart = () => {
                                 key={item.id}
                                 className="cart-row grid grid-cols-6 items-center border-b border-gray-300 p-4"
                             >
-                                {/* Remove Button */}
-                                <div className="col-span-1">
-                                    <button
-                                        onClick={() => handleRemove(item.id)}
-                                        className="text-red-500 hover:underline"
-                                    >
-                                        Remove
-                                    </button>
-                                </div>
+                                {/* Product Name */}
+                                <div className="col-span-1 font-medium">{item.name}</div>
                                 {/* Product Image */}
                                 <div className="col-span-1">
                                     <img
@@ -71,10 +66,8 @@ const Cart = () => {
                                         className="w-16 h-16 rounded"
                                     />
                                 </div>
-                                {/* Product Name */}
-                                <div className="col-span-1 font-medium">{item.name}</div>
                                 {/* Product Price */}
-                                <div className="col-span-1">${item.price.toFixed(2)}</div>
+                                <div className="col-span-1">Rs: {item.price.toFixed(2)}</div>
                                 {/* Quantity Input */}
                                 <div className="col-span-1 bg-blue w-fit rounded-md">
                                     <div className="flex items-center gap-5 px-2 bg-blue-500 text-white rounded">
@@ -95,10 +88,18 @@ const Cart = () => {
                                         </button>
                                     </div>
                                 </div>
-
                                 {/* Total Price */}
                                 <div className="col-span-1 font-medium">
-                                    ${(item.price * quantities[item.id]).toFixed(2)}
+                                    Rs: {(item.price * quantities[item.id]).toFixed(2)}
+                                </div>
+                                {/* Remove Button */}
+                                <div className="col-span-1">
+                                    <button
+                                        onClick={() => handleRemove(item.id)}
+                                        className="text-red-500 hover:underline"
+                                    >
+                                        Remove
+                                    </button>
                                 </div>
                             </div>
 
@@ -109,23 +110,36 @@ const Cart = () => {
                 </div>
 
                 {/* Price Summary Section */}
-                <div className="mt-6 border-2 border-gray-300 shadow-md p-6 w-[30%] rounded-lg bg-white">
+                <Link to="/shop">
+                    <h3 className="text-xl md:text-2xl font-semibold text-end  animate-pulse">
+                        Continue Shopping...
+                    </h3>
+                </Link>
+                <div className="mt-6 border-2 justify-self-end border-gray-300 shadow-md p-6 w-[30%] rounded-lg bg-white">
                     <h3 className="text-xl font-bold text-gray-800 border-b pb-2">Cart Summary</h3>
 
                     <div className="flex justify-between items-center mt-4 text-lg">
                         <p className="text-gray-600">Total Price:</p>
-                        <p className="font-semibold text-gray-900">${totalPrice.toFixed(2)}</p>
+                        <p className="font-semibold text-gray-900">Rs: {totalPrice.toFixed(2)}</p>
                     </div>
 
                     {cart.length > 0 && (
-                        <Link
-                            to="/checkout"
-                            state={{ cartItems: cart, totalPrice }}
+                        <button
+                            onClick={() => setIsModalOpen(true)}
                             className="mt-6 w-full block bg-blue hover:bg-pink text-white text-center py-3 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
                         >
                             Proceed to Checkout
-                        </Link>
+                        </button>
                     )}
+
+                    {/* Checkout Modal */}
+                    <CheckoutModal
+                        isOpen={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                        cart={cart}
+                        totalPrice={totalPrice}
+                        dispatch={dispatch}
+                    />
                 </div>
 
             </div>

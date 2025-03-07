@@ -40,13 +40,13 @@ const Order = ({ product }) => {
   }, [favourites]);
   
 
-  const toggleFavourite = (productId) => {
-    setFavourites((prevFavourites) =>
-      prevFavourites.includes(productId)
-        ? prevFavourites.filter((id) => id !== productId) // Remove from favourites
-        : [...prevFavourites, productId] // Add to favourites
-    );
-  };
+  // const toggleFavourite = (productId) => {
+  //   setFavourites((prevFavourites) =>
+  //     prevFavourites.includes(productId)
+  //       ? prevFavourites.filter((id) => id !== productId) // Remove from favourites
+  //       : [...prevFavourites, productId] // Add to favourites
+  //   );
+  // };
 
 
   return (

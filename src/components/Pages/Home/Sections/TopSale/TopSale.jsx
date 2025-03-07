@@ -7,7 +7,7 @@ const TopSale = () => {
             <div className="bg-[url('/images/image/bannerTopSale.png')] bg-cover bg-center bg-no-repeat h-[500px] md:h-[500px] mx-auto py-20 my-20">
                 <div className="flex flex-col justify-center items-center gap-8 text-center px-6 md:px-20 lg:px-80">
                     <h3 className="text-3xl font-bold text-[#2b4174]">
-                        <span className="text-[#fc7c7c] font-semibold">70%</span> Sale Off
+                        <span className="text-[#fc7c7c] font-semibold">10%</span> Sale Off
                     </h3>
                     <h3 className="text-4xl md:text-5xl font-playfair font-semibold">
                         Best Quality Bakery Products
