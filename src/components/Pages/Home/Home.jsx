@@ -11,37 +11,37 @@ import ShopContext from '../../Services/Context/Shop/ShopContext'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { decentBakery } from '../../Services/data/data'
 
 const Home = () => {
-    const BackendURL = import.meta.env.VITE_BACKEND_URL
-    // console.log(setSelectedCategory)
-    const [products, setProducts] = useState([]);
+    // const BackendURL = import.meta.env.VITE_BACKEND_URL
+    // // console.log(setSelectedCategory)
+    const [products, setProducts] = useState(decentBakery);
     console.log("Products from Backend", products)
     const [category, setCategory] = useState()
-    console.log(category)
-    useEffect(() => {
-        // Extract unique categories
-        const uniqueCategories = [...new Set(products.map((item) => item.category))];
-        setCategory(uniqueCategories);
-    }, [products]);
-    const [loading, setLoading] = useState(false)
+    // console.log(category)
+    // useEffect(() => {
+    //     const uniqueCategories = [...new Set(products.map((item) => item.category))];
+    //     setCategory(uniqueCategories);
+    // }, [products]);
+    // const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        const getProducts = async () => {
-            setLoading(true)
-            try {
-                const response = await axios.get(`${BackendURL}/getAllProducts`)
-                const products = response.data
-                console.log(products)
-                setProducts(products.products)
-                setLoading(false)
-            } catch (error) {
-                console.error(error.message)
-            }
-        }
+    // useEffect(() => {
+    //     const getProducts = async () => {
+    //         setLoading(true)
+    //         try {
+    //             const response = await axios.get(`${BackendURL}/getAllProducts`)
+    //             const products = response.data
+    //             console.log(products)
+    //             setProducts(products.products)
+    //             setLoading(false)
+    //         } catch (error) {
+    //             console.error(error.message)
+    //         }
+    //     }
 
-        getProducts()
-    }, [])
+    //     getProducts()
+    // }, [])
     const settings = {
         dots: false,
         infinite: true,
@@ -125,7 +125,7 @@ const Home = () => {
                 </Slider>
             </div>
             {/* <Category/> */}
-            <Category category={category} />
+            <Category category={products} />
             {/* <Sale /> */}
             {/* <Products /> */}
             <TopSale />

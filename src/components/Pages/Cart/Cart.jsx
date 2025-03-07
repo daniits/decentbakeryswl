@@ -108,14 +108,14 @@ const Cart = () => {
                         <p className="text-gray-500">No items in the cart.</p>
                     )}
                 </div>
+                <div className="flex justify-between mt-5">
 
-                {/* Price Summary Section */}
                 <Link to="/shop">
-                    <h3 className="text-xl md:text-2xl font-semibold text-end  animate-pulse">
+                    <h3 className="text-xl  md:text-2xl font-semibold   animate-pulse">
                         Continue Shopping...
                     </h3>
                 </Link>
-                <div className="mt-6 border-2 justify-self-end border-gray-300 shadow-md p-6 w-[30%] rounded-lg bg-white">
+                <div className="border-2 justify-self-end border-gray-300 shadow-md p-6 w-[30%] rounded-lg bg-white">
                     <h3 className="text-xl font-bold text-gray-800 border-b pb-2">Cart Summary</h3>
 
                     <div className="flex justify-between items-center mt-4 text-lg">
@@ -141,6 +141,10 @@ const Cart = () => {
                         dispatch={dispatch}
                     />
                 </div>
+                    
+                </div>
+                {/* Price Summary Section */}
+                
 
             </div>
         </div>
