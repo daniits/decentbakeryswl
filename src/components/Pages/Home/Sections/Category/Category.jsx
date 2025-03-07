@@ -96,6 +96,7 @@ function PrevArrow(props) {
 }
 
 const Category = ({ category, handleCategoryClick }) => {
+  console.log(category)
 
   // console.log(category)
 
