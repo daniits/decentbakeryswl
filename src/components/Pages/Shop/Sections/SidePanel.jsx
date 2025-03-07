@@ -105,25 +105,7 @@ const SidePanel = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center bg-gray-200 ">
-                <div className="p-5 flex flex-col items-center">
-                    <h3 className="text-xl font-semibold"><span className="text-pink italic">70%</span> Sale Off</h3>
-                    <h3 className="text-4xl text-center font-playfair">Best Quality Products</h3>
-                    <button className='bg-pink animated-button font-playfair hover:animate-fade-slide-up transition-colors duration-300 px-3 py-1 lg:px-4 lg:py-3 rounded-2xl text-white font-semibold'>
-                        <span>SHOP NOW</span>
-                    </button>
-                </div>
-                <img src="/images/image/cropBanner1.jpg" className='mt-[-50px]' />
-            </div>
-
-            <div className='flex flex-col gap-4'>
-            <h3 className="text-2xl font-bold">Tags</h3>
-            <div className="grid grid-cols-2 gap-3">
-                {tags.map((tag, i)=>(
-                    <button key={i} className="bg-white text-black hover:text-white hover:bg-pink border-2 border-gray-200 font-semibold rounded-full py-2 px-3">{tag}</button>
-                ))}
-            </div>
-            </div>
+             
         </div>
     )
 }

@@ -10,7 +10,9 @@ const Footer = () => {
           <h3 className="text-3xl font-playfair font-semibold mb-4">CONTACT US</h3>
           <p className="text-base font-semibold mb-4">
             If you have any question, please contact us at{' '}
-            <span className="text-pink">demo@example.com</span>
+            <span className="text-pink">
+              <a href="mailto:decentbakery@gmail.com">decentbakery@gmail.com</a>
+            </span>
           </p>
           <div className="flex gap-2 items-center mb-4">
             <SvgIcon iconName="location" className="w-8 h-auto" />
@@ -19,8 +21,8 @@ const Footer = () => {
           <div className="flex gap-2 ">
             <SvgIcon iconName="phone" className="w-8 h-auto" />
             <div>
-              <p>+92 312 5911 875</p>
-              <p>+92 312 4658 604</p>
+              <p><a href="tel:+923125911875">+92 312 5911 875</a></p>
+              <p><a href="tel:+923124658604">+92 312 4658 604</a></p>
             </div>
           </div>
         </div>

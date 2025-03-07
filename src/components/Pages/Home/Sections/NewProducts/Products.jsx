@@ -6,15 +6,15 @@ const Products = () => {
 
 
   return (
-    <div className="bg-white p-10">
+    <div className="p-0 flex flex-col items-center gap-10">
       <h2 className="text-center text-2xl font-bold text-gray-700 mb-8">Our Products</h2>
       <div
-        className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:px-10 lg:px-32 transition-all duration-1000 `}
+        className={` grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:px-10 lg:px-32 transition-all duration-1000 `}
       >
         {products.map((product, key) => (
           <div
             key={key}
-            className={`bg-white w-[100%] sm:shadow-2xl lg:shadow-md lg:hover:shadow-2xl rounded-3xl  flex flex-col transition-shadow duration-300 border-[1px]`}
+            className={` w-[100%] sm:shadow-2xl lg:shadow-md lg:hover:shadow-2xl rounded-3xl  flex flex-col transition-shadow duration-300 border-[1px]`}
           >
             <div className="w-[100%] h-auto flex items-center justify-center mb-0">
               <img src={product.img} alt={product.name} className="h-full" />
@@ -23,7 +23,7 @@ const Products = () => {
               <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
               <p className="text-sm text-gray-600 mb-4">{product.details}</p>
             </div>
-            <div className="p-4  bg-pink-200 bg-opacity-20 backdrop-blur-md border border-pink-200 flex items-center justify-between rounded-b-3xl shadow-lg">
+            <div className="p-4 bg-opacity-20 backdrop-blur-md   flex items-center justify-between rounded-b-3xl ">
               <h3 className="text-lg font-bold text-gray-800">
                 <span className="text-sm font-medium text-gray-500">from</span> {product.price}
               </h3>
@@ -36,6 +36,9 @@ const Products = () => {
           </div>
         ))}
       </div>
+      <Link to="/shop">
+        <button className="bg-blue text-white hover:text-pink hover:bg-transparent border-2 border-blue hover:border-pink w-fit px-3 py-1 rounded-lg font-semibold">Show More</button>
+      </Link>
     </div>
   );
 };
