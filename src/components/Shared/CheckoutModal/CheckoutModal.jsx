@@ -138,11 +138,11 @@ const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
                       <div>
                         <p className="font-medium">{item.name}</p>
                         <p className="text-gray-500 text-sm">
-                          Qty: {item.quantity} | Price: ${item.price}
+                          Qty: {item.quantity} | Price: Rs. {item.price}
                         </p>
                       </div>
                       <p className="font-medium">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        Rs. {(item.price * item.quantity).toFixed(2)}
                       </p>
                     </motion.li>
                   ))}
@@ -220,7 +220,7 @@ const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
                 <div className="border-t border-gray-200 pt-4 flex justify-between items-center">
                   <p className="text-gray-600">Total Price:</p>
                   <p className="font-semibold text-gray-900">
-                    ${totalPrice.toFixed(2)}
+                    Rs. {totalPrice.toFixed(2)}
                   </p>
                 </div>
                 {/* Buttons */}
@@ -234,7 +234,7 @@ const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-gray-400 hover:bg-gray-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg transition"
+                    className="bg-blue text-white font-medium px-4 py-2 rounded-lg transition"
                   >
                     Place Order
                   </button>
