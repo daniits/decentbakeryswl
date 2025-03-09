@@ -189,7 +189,7 @@ const GridProducts = ({ products, loading }) => {
                   Stay Here
                 </button>
                 <button
-                  onClick={() => (window.location.href = "/cart/:productId")}
+                  onClick={() => (window.location.href = "/cart/productId")}
                   className="px-4 py-2 bg-white text-indigo-500 font-semibold rounded-full transition-all hover:scale-105"
                 >
                   Go to Cart
