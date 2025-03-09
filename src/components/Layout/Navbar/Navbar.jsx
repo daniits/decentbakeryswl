@@ -49,7 +49,7 @@ const Navbar = () => {
                 {/* Search & Bag Icons */}
                 <div className="flex gap-4"> 
                     <div className="hover:bg-pink/50 p-2 rounded-full">
-                        <Link to="/cart/productId">
+                        <Link to="/cart">
                             <div className="relative">
                         {/* Cart Icon */}
                         <SvgIcon iconName="bag" className="w-7 h-auto cursor-pointer" />

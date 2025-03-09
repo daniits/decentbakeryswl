@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SvgIcon from "../../../../../../public/images/Svgicon";
 import Loader from "../../../../Shared/Loader/Loader";
 import { useCart } from "../../../../Services/Context/CartContext";
@@ -6,16 +7,14 @@ import Modal from "react-awesome-modal";
 import { motion } from "framer-motion";
 
 const GridProducts = ({ products, loading }) => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9;
 
   // Calculate the products to display for the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(products.length / productsPerPage);
@@ -160,37 +159,41 @@ const GridProducts = ({ products, loading }) => {
         </>
       )}
 
-      {/* Awesome Modal with Framer Motion Animation */}
-      {/* Awesome Modal with Framer Motion Animation */}
+      {/* Updated Modal with Framer Motion Animation */}
       <Modal
         visible={isModalOpen}
         effect="fadeInUp"
         onClickAway={() => setIsModalOpen(false)}
-        className="rounded-2xl"
+        className="rounded-xl p-0"
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
-          className="p-6 rounded-2xl shadow-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-center text-white"
+          className="p-8 rounded-xl shadow-lg bg-white text-center"
         >
           {addedProduct && (
             <>
-              <h3 className="text-2xl font-bold mb-2">
-                {addedProduct.name} added!
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {addedProduct.name} added to cart!
               </h3>
-              <p className="mb-4">Quantity: {addedProduct.quantity}</p>
+              <p className="text-gray-600 mb-6">
+                Quantity: {addedProduct.quantity}
+              </p>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 bg-white text-indigo-500 font-semibold rounded-full transition-all hover:scale-105"
+                  className="px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-full hover:bg-gray-300 transition-all"
                 >
-                  Stay Here
+                  Continue Shopping
                 </button>
                 <button
-                  onClick={() => (window.location.href = "/cart/productId")}
-                  className="px-4 py-2 bg-white text-indigo-500 font-semibold rounded-full transition-all hover:scale-105"
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    navigate("/cart");
+                  }}
+                  className="px-6 py-2 bg-blue text-white font-semibold rounded-full hover:bg-blue-600 transition-all"
                 >
                   Go to Cart
                 </button>
