@@ -4,15 +4,17 @@ import { motion } from "framer-motion";
 import SvgIcon from "../../../../../../public/images/Svgicon";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Modal from "react-awesome-modal";
 import { useCart } from "../../../../Services/Context/CartContext";
 import { decentBakery } from "../../../../Services/data/data";
+import { useNavigate } from "react-router-dom";
 
 function NextArrow(props) {
   const { className, onClick } = props;
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2 transform -translate-y-1/2`}
     >
       <SvgIcon iconName="right-arrow" />
     </button>
@@ -24,7 +26,7 @@ function PrevArrow(props) {
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2 transform -translate-y-1/2`}
     >
       <SvgIcon iconName="right-arrow" className="rotate-180" />
     </button>
@@ -32,7 +34,8 @@ function PrevArrow(props) {
 }
 
 function BestSeller() {
-  // 1) Gather your bestSeller products
+  // Define navigate here so it's available in the component's scope
+  const navigate = useNavigate();
   const bestSellers = decentBakery
     .flatMap((category) => category.products)
     .filter((product) => product.bestSeller);
@@ -180,6 +183,48 @@ function BestSeller() {
           </motion.div>
         ))}
       </Slider>
+      <Modal
+        visible={isModalOpen}
+        effect="fadeInUp"
+        onClickAway={() => setIsModalOpen(false)}
+        className="rounded-xl p-0"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ duration: 0.3 }}
+          className="p-8 rounded-xl shadow-lg bg-white text-center"
+        >
+          {addedProduct && (
+            <>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {addedProduct.name} added to cart!
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Quantity: {addedProduct.quantity}
+              </p>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-full hover:bg-gray-300 transition-all"
+                >
+                  Continue Shopping
+                </button>
+                <button
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    navigate("/cart");
+                  }}
+                  className="px-6 py-2 bg-blue text-white font-semibold rounded-full hover:bg-blue-600 transition-all"
+                >
+                  Go to Cart
+                </button>
+              </div>
+            </>
+          )}
+        </motion.div>
+      </Modal>
     </div>
   );
 }
