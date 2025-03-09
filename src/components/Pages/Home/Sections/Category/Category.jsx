@@ -1,17 +1,17 @@
 import React from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";   
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SvgIcon from "../../../../../../public/images/Svgicon";
 
 function NextArrow(props) {
-  const { className, onClick } = props;
+  const { onClick } = props;
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+      className="text-white w-6 h-6 rounded-full flex items-center justify-center absolute top-1/2 right-[-20px] transform -translate-y-1/2 z-10"
     >
       <SvgIcon iconName="right-arrow" />
     </button>
@@ -19,11 +19,11 @@ function NextArrow(props) {
 }
 
 function PrevArrow(props) {
-  const { className, onClick } = props;
+  const { onClick } = props;
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-red-500 hover:bg-red-700 text-white w-10 h-10 rounded-full flex mx-[-20px] items-center justify-center absolute top-1/2  transform -translate-y-1/2`}
+      className="text-white w-6 h-6 rounded-full flex items-center justify-center absolute top-1/2 left-[-20px] transform -translate-y-1/2 z-10"
     >
       <SvgIcon iconName="right-arrow" className="rotate-180" />
     </button>
@@ -48,22 +48,22 @@ const Category = ({ category }) => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024, 
+        breakpoint: 968,
         settings: { slidesToShow: 3 },
       },
       {
-        breakpoint: 768,  
+        breakpoint: 768,
         settings: { slidesToShow: 2 },
       },
       {
-        breakpoint: 480,  
+        breakpoint: 480,
         settings: { slidesToShow: 1 },
       },
     ],
   };
 
   return (
-    <div className="mx-20 px-0 py-0 relative">
+    <div className="mx-0 md:mx-10 relative">
       <Slider {...settings}>
         {category?.map((item, index) => (
           <motion.div
@@ -75,21 +75,19 @@ const Category = ({ category }) => {
             transition={{ duration: 0.5 }}
           >
             <div
-              className="bg-white h-[264px] w-[326px] rounded-xl shadow-lg py-5 flex flex-col items-center gap-4 overflow-hidden"
+              className="bg-white h-[264px] w-full max-w-[326px] mx-auto rounded-xl shadow-lg py-5 flex flex-col items-center gap-4 overflow-hidden cursor-pointer"
+              onClick={() => handleCategoryClick(item)}
             >
               {item.categoryImage && (
-                <div className="w-[293px] h-[181px]">
+                <div className="w-full h-[181px] px-2 overflow-hidden">
                   <img
                     src={item.categoryImage}
                     alt={item.category || "Category Image"}
-                    className="w-full h-full object-cover rounded-xl pop-up"
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
                   />
                 </div>
               )}
-              <h3
-                className="text-lg font-bold text-gray-800 font-playfair cursor-pointer"
-                onClick={() => handleCategoryClick(item)}
-              >
+              <h3 className="text-lg font-bold text-gray-800 font-playfair">
                 {item.category}
               </h3>
             </div>

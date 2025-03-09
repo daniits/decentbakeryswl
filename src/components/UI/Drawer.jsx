@@ -38,20 +38,20 @@ const Drawer = ({ showDrawer, handleClose }) => {
                         >
                             HOME
                         </Link>
-                        <Link
+                        {/* <Link
                             to="/about"
                             onClick={handleClose}
                             className="text-white hover:bg-[#087D87] rounded-lg px-3 py-2 transition-all duration-300 ease-in-out"
                         >
                             ABOUT
-                        </Link>
-                        <Link
+                        </Link> */}
+                        {/* <Link
                             to="/shop"
                             onClick={handleClose}
                             className="text-white hover:bg-[#087D87] rounded-lg px-3 py-2 transition-all duration-300 ease-in-out"
                         >
                             SHOP
-                        </Link>
+                        </Link> */}
                         <Link
                             to="/contact"
                             onClick={handleClose}

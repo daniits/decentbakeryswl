@@ -87,7 +87,7 @@ const Home = () => {
 
                     {/* Slide 1 */}
                     <div className="relative w-full h-screen">
-                        <img src="public/images/image/banner4.jpg" alt="banner1" className="w-full h-full object-cover" />
+                        <img src="/public/images/image/banner4.jpg" alt="banner1" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex items-center justify-start px-12 text-white">
                             <div className="max-w-[600px]">
@@ -99,7 +99,7 @@ const Home = () => {
 
                     {/* Slide 2 */}
                     <div className="relative w-full h-screen">
-                        <img src="public/images/image/banner2.jpg" alt="Elegant Interior" className="w-full h-full object-cover" />
+                        <img src="/public/images/image/banner2.jpg" alt="Elegant Interior" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-white text-center">
                             <div className="max-w-[600px]">
@@ -112,7 +112,7 @@ const Home = () => {
 
                     {/* Slide 3 */}
                     <div className="relative w-full h-screen">
-                        <img src="public/images/image/banner3.jpg" alt="Dream House" className="w-full h-full object-cover" />
+                        <img src="/public/images/image/banner3.jpg" alt="Dream House" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-end justify-center text-white text-right px-12">
                             <div className="max-w-[600px]">

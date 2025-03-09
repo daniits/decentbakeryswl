@@ -34,7 +34,7 @@ const Navbar = () => {
 
             {/* Center Links (Hidden on small screens, shown on large screens) */}
             <div className="hidden lg:flex flex-grow justify-center items-center gap-10 font-semibold">
-                {["home", "shop", "contact"].map((item) => (
+                {["home",  "contact"].map((item) => (
                     <Link 
                         key={item} 
                         to={`/${item}`} 
