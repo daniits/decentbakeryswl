@@ -193,7 +193,7 @@ const GridProducts = ({ products, loading }) => {
                     setIsModalOpen(false);
                     navigate("/cart");
                   }}
-                  className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 transition-all"
+                  className="px-6 py-2 bg-blue text-white font-semibold rounded-full hover:bg-blue-600 transition-all"
                 >
                   Go to Cart
                 </button>
