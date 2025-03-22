@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -30,18 +30,40 @@ function PrevArrow(props) {
   );
 }
 
-const Category = ({ category }) => {
+const Category = () => {
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+
   const handleCategoryClick = (item) => {
     localStorage.setItem("selectedCategory", JSON.stringify(item));
     navigate("/shop");
   };
 
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await fetch(
+          "http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/categories"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategory();
+  }, []);
+
+  // Adjust slider settings based on number of categories
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: categories.length > 1, // disable infinite if only one category
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: categories.length < 4 ? categories.length : 4,
     slidesToScroll: 1,
     arrows: true,
     nextArrow: <NextArrow />,
@@ -49,11 +71,11 @@ const Category = ({ category }) => {
     responsive: [
       {
         breakpoint: 968,
-        settings: { slidesToShow: 3 },
+        settings: { slidesToShow: categories.length < 3 ? categories.length : 3 },
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: categories.length < 2 ? categories.length : 2 },
       },
       {
         breakpoint: 480,
@@ -65,7 +87,7 @@ const Category = ({ category }) => {
   return (
     <div className="mx-0 md:mx-10 relative">
       <Slider {...settings}>
-        {category?.map((item, index) => (
+        {categories.map((item, index) => (
           <motion.div
             key={index}
             className="p-2"

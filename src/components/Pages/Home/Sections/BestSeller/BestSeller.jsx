@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import SvgIcon from "../../../../../../public/images/Svgicon";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-awesome-modal";
 import { useCart } from "../../../../Services/Context/CartContext";
-import { decentBakery } from "../../../../Services/data/data";
 import { useNavigate } from "react-router-dom";
 
 function NextArrow(props) {
@@ -34,11 +33,38 @@ function PrevArrow(props) {
 }
 
 function BestSeller() {
-  // Define navigate here so it's available in the component's scope
+  // Rename state to "products" to store fetched products
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const bestSellers = decentBakery
-    .flatMap((category) => category.products)
-    .filter((product) => product.bestSeller);
+  const { dispatch } = useCart();
+  const [isOrdering, setIsOrdering] = useState(null);
+  const [selProduct, setSelProduct] = useState(null);
+  const [count, setCount] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [addedProduct, setAddedProduct] = useState(null);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          "http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/products"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
+  // Filter products where bestSeller is true
+  const bestSellers = products.filter((product) => product.bestSeller);
 
   const settings = {
     dots: false,
@@ -69,13 +95,6 @@ function BestSeller() {
     ],
   };
 
-  const { dispatch } = useCart();
-  const [isOrdering, setIsOrdering] = useState(null);
-  const [selProduct, setSelProduct] = useState(null);
-  const [count, setCount] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [addedProduct, setAddedProduct] = useState(null);
-
   const increment = () => setCount((prev) => prev + 1);
   const decrement = () => setCount((prev) => Math.max(prev - 1, 1));
 
@@ -88,8 +107,6 @@ function BestSeller() {
       quantity: count,
       image: product?.image || "",
     };
-
-    console.log("Adding to cart:", cartItem);
     dispatch({ type: "ADD_TO_CART", payload: cartItem });
     setAddedProduct(cartItem);
     setIsModalOpen(true);
@@ -104,8 +121,9 @@ function BestSeller() {
           Best Seller
         </h2>
         <p className="px-[20%]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tenetur
-          libero repudiandae sed porro mollitia molestias, iusto quo voluptates culpa?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          tenetur libero repudiandae sed porro mollitia molestias, iusto quo
+          voluptates culpa?
         </p>
       </div>
 
@@ -136,7 +154,9 @@ function BestSeller() {
 
               {/* Content Section */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800">{product.name}</h3>
+                <h3 className="text-xl font-bold text-gray-800">
+                  {product.name}
+                </h3>
                 <p className="text-gray-600 text-sm mt-2 leading-relaxed">
                   {product.description.split(" ").slice(0, 10).join(" ")}
                   {product.description.split(" ").length > 10 ? "..." : ""}
@@ -165,7 +185,9 @@ function BestSeller() {
               ) : (
                 <div className="p-4 bg-pink-200 bg-opacity-20 backdrop-blur-md border border-pink-200 flex items-center justify-between rounded-b-3xl shadow-lg">
                   <h3 className="text-lg font-bold text-gray-800">
-                    <span className="text-sm font-medium text-gray-500">from </span>
+                    <span className="text-sm font-medium text-gray-500">
+                      from{" "}
+                    </span>
                     Rs: {product.price}
                   </h3>
                   <button
