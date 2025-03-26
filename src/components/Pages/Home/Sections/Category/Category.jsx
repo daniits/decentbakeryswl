@@ -43,7 +43,7 @@ const Category = () => {
     const fetchCategory = async () => {
       try {
         const response = await fetch(
-          "http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/categories"
+          "https://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/categories"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
