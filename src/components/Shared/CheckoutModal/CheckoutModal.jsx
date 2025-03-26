@@ -62,7 +62,7 @@ const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
         })),
       };
   
-      const res = await fetch("http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/orders", {
+      const res = await fetch("https://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderPayload),
