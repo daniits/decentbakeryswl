@@ -7,6 +7,7 @@ import Modal from "react-awesome-modal";
 import { motion } from "framer-motion";
 
 const GridProducts = ({ products, loading }) => {
+  console.log("gridProd",products)
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9;

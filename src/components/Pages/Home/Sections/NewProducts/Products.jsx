@@ -1,5 +1,5 @@
 import React from "react";
-import { products } from "../../../../Services/data/data";
+// import { products } from "../../../../Services/data/data";
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -11,7 +11,7 @@ const Products = () => {
       <div
         className={` grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:px-10 lg:px-32 transition-all duration-1000 `}
       >
-        {products.map((product, key) => (
+        {/* {products.map((product, key) => (
           <div
             key={key}
             className={` w-[100%] sm:shadow-2xl lg:shadow-md lg:hover:shadow-2xl rounded-3xl  flex flex-col transition-shadow duration-300 border-[1px]`}
@@ -34,7 +34,7 @@ const Products = () => {
               </Link>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
       <Link to="/shop">
         <button className="bg-blue text-white hover:text-pink hover:bg-transparent border-2 border-blue hover:border-pink w-fit px-3 py-1 rounded-lg font-semibold">Show More</button>

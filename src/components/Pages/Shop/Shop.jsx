@@ -2,24 +2,56 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Shared/Header/Header";
 import SvgIcon from "../../../../public/images/Svgicon";
 import GridProducts from "./Sections/Products/GridProducts";
-import { decentBakery } from "../../Services/data/data";
+// import { decentBakery } from "../../Services/data/data";
 import { motion, AnimatePresence } from "framer-motion";
 
-function getCategoryCounts(data) {
-  const categoryCounts = data.map((cat) => ({
-    name: cat.category,
-    amount: cat.products.length,
-  }));
-  const totalProducts = data.reduce((acc, cat) => acc + cat.products.length, 0);
-  categoryCounts.unshift({ name: "ALL", amount: totalProducts });
-  return categoryCounts;
-}
+
 
 const Shop = () => {
-  const [products] = useState(() =>
-    decentBakery.flatMap((cat) => cat.products)
-  );
+  const [decentBakery, setDecentBakery] = useState([])
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          "http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/products"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setDecentBakery(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
+    fetchProduct();
+  }, []);
+
+  function getCategoryCounts(data) {
+    const categoryCounts = data.reduce((acc, product) => {
+      const category = product.category || "Uncategorized";
+      if (!acc[category]) {
+        acc[category] = 0;
+      }
+      acc[category]++;
+      return acc;
+    }, {});
+  
+    const categoryArray = Object.entries(categoryCounts).map(([name, amount]) => ({
+      name,
+      amount,
+    }));
+  
+    const totalProducts = data.length;
+    categoryArray.unshift({ name: "ALL", amount: totalProducts });
+  
+    return categoryArray;
+  }
+  
+
+  const products = decentBakery; 
+console.log("oldData",decentBakery)
   const category = getCategoryCounts(decentBakery);
 
   const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -44,15 +76,20 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === "ALL") {
-      setCategoryProducts(products);
-    } else {
-      const categoryObj = decentBakery.find(
-        (cat) => cat.category === selectedCategory
-      );
-      setCategoryProducts(categoryObj ? categoryObj.products : []);
-    }
-  }, [selectedCategory, products]);
+  let filteredProducts = selectedCategory === "ALL" 
+    ? products 
+    : products.filter((product) => product.category === selectedCategory);
+
+  if (searchQuery.trim() !== "") {
+    filteredProducts = filteredProducts.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+
+  setCategoryProducts(filteredProducts);
+}, [selectedCategory, products, searchQuery]);
+
+  
 
   const handleCategoryClick = (categoryName) => {
     console.log("User clicked category:", categoryName);

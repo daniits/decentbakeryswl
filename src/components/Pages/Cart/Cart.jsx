@@ -41,9 +41,9 @@ const Cart = () => {
             <div className="container mx-auto p-6">
                 <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
                 <div className="cart-table w-full border-collapse border border-gray-300">
-                    <div className="cart-header grid grid-cols-6 bg-blue/90 text-white font-medium text-left p-4">
+                    <div className="cart-header grid grid-cols-5 bg-blue/90 text-white font-medium text-left p-4">
                         <div className="col-span-1">Product Name</div>
-                        <div className="col-span-1">Image</div>
+                        {/* <div className="col-span-1">Image</div> */}
                         <div className="col-span-1">Price</div>
                         <div className="col-span-1">Quantity</div>
                         <div className="col-span-1">Total</div>
@@ -54,18 +54,18 @@ const Cart = () => {
                         cart.map((item) => (
                             <div
                                 key={item.id}
-                                className="cart-row grid grid-cols-6 items-center border-b border-gray-300 p-4"
+                                className="cart-row grid grid-cols-5 items-center border-b border-gray-300 p-4"
                             >
                                 {/* Product Name */}
                                 <div className="col-span-1 font-medium">{item.name}</div>
                                 {/* Product Image */}
-                                <div className="col-span-1">
+                                {/* <div className="col-span-1">
                                     <img
                                         src={item.image}
                                         alt={item.name}
                                         className="w-16 h-16 rounded"
                                     />
-                                </div>
+                                </div> */}
                                 {/* Product Price */}
                                 <div className="col-span-1">Rs: {item.price.toFixed(2)}</div>
                                 {/* Quantity Input */}

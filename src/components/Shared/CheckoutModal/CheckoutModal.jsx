@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
+  console.log(cart)
   if (!isOpen) return null;
 
   const totalPrice = cart.reduce(
@@ -40,47 +41,52 @@ const CheckoutModal = ({ isOpen, onClose, cart, dispatch }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // WARNING: Directly calling Resend from the frontend will expose your API key.
-    // Use this method only in development/testing.
-    const API_KEY = "re_axDiQdc9_PzuSwpuANr3MMpkzFhtn7az5"; // Replace with your actual Resend API key
-    const resendEndpoint = "https://api.resend.com/emails";
-
-    const emailPayload = {
-      from: "d4n.kh4n@gmail.com", // Must be a verified sender in Resend
-      to: formData.email,
-      subject: "Order Confirmation",
-      html: customEmailTemplate,
-    };
-
-    fetch(resendEndpoint, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(emailPayload),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Resend returns an 'id' when the email is successfully sent
-        if (data.id) {
-          setIsSuccessModalOpen(true);
-          setTimeout(() => {
-            setIsSuccessModalOpen(false);
-            onClose();
-            dispatch({ type: "CLEAR_CART" });
-          }, 2000);
-        } else {
-          console.error("Something went wrong. Please try again.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+  
+    try {
+      if (!cart || cart.length === 0) {
+        console.error("Cart is empty.");
+        return;
+      }
+  
+      const orderPayload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        additionalNotes: formData.notes,
+        cart: cart.map(item => ({
+          _id: item.id,
+          quantity: item.quantity,
+        })),
+      };
+  
+      const res = await fetch("http://nodejs-env.eba-hmsmsigv.us-east-1.elasticbeanstalk.com/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
       });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        console.error("Order error:", data.error);
+        return;
+      }
+  
+      setIsSuccessModalOpen(true);
+      setTimeout(() => {
+        setIsSuccessModalOpen(false);
+        onClose();
+        dispatch({ type: "CLEAR_CART" });
+      }, 2000);
+    } catch (err) {
+      console.error("Submission error:", err);
+    }
   };
+  
+  
 
   // Animation Variants
   const backdropVariants = {
